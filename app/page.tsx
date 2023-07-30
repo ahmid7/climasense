@@ -1,6 +1,9 @@
-import CurrentForecast from '@/components/CurrentForecast'
-import WeeklyForecast from '@/components/WeeklyForecast'
 import Image from 'next/image'
+
+import CurrentForecast from '@/components/CurrentForecast'
+import TodayWeatherDetails from '@/components/TodayWeatherDetails'
+import TodayWeatherHighlight from '@/components/TodayWeatherHighlight'
+import WeeklyForecast from '@/components/WeeklyForecast'
 
 const weeklyForecastData = [
   {
@@ -89,7 +92,7 @@ export default function Home() {
           </header>
         </div>
 
-        <div className='flex'>
+        <div className='flex space-x-10'>
           <div className='min-w-[352px]'>
             {/* current weather */}
             <CurrentForecast />
@@ -101,7 +104,11 @@ export default function Home() {
           </div>
 
           <div className='flex-1'>
+            {/* Today Weather Details */}
+            <TodayWeatherDetails />
 
+            {/* Today Weather Highlight */}
+            <TodayWeatherHighlight />
           </div>
         </div>
 

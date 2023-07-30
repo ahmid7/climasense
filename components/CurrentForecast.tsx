@@ -9,7 +9,7 @@ function CurrentForecast() {
           <div className='flex gap-x-[56px]'>
             <div className='[&_span]:block'>
               <span className='text-2xl font-medium'>Now</span>
-              <span className='text-[40px] '>5'C</span>
+              <span className='text-[40px] '>5&deg;C</span>
             </div>
 
             <Image

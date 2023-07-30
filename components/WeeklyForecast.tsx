@@ -29,7 +29,7 @@ function WeeklyForecast({ forecast }: { forecast: forecast }) {
                       height={19.08}
                     />
 
-                    <span>{ data.temp }'</span>
+                    <span>{ data.temp }&deg;</span>
                   </div>
 
                   <span>{ data.date }</span>
