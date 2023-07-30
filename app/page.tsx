@@ -1,3 +1,4 @@
+import CurrentForecast from '@/components/CurrentForecast'
 import WeeklyForecast from '@/components/WeeklyForecast'
 import Image from 'next/image'
 
@@ -89,58 +90,7 @@ export default function Home() {
         </div>
 
         {/* current weather */}
-        <div className='rounded-[20px] max-w-[352px] py-4 border-2 border-white '>
-
-          <div className='px-4'>
-            <div className='flex gap-x-[56px]'>
-              <div className='[&_span]:block'>
-                <span className='text-2xl font-medium'>Now</span>
-                <span className='text-[40px] '>5'C</span>
-              </div>
-
-              <Image
-                alt='weather-icon'
-                priority={true}
-                quality={100}
-                src='/svg/weather-icon.svg'
-                width={62}
-                height={56}
-              />
-            </div>
-            <span className='text-lg font-medium'>Broken Cloud</span>
-          </div>
-
-
-          <div className='my-[18px] w-full h-[3px] bg-[#8a8383]'/>
-
-          <div className='space-y-[29px] [&_div]:flex [&_div]:items-center [&_div]:gap-x-6 px-4'>
-            <div>
-              <Image
-                alt='calender-icon'
-                src="/images/calendar.png"
-                priority={true}
-                quality={100}
-                width={24}
-                height={24}
-              /> 
-
-              <span>Wednesday 26th, July</span>
-            </div>
-
-            <div>
-              <Image
-                alt='locationpin-icon'
-                src="/images/locationpin.png"
-                priority={true}
-                quality={100}
-                width={32}
-                height={32}
-              /> 
-
-              <span>Kwara, Nigeria</span>
-            </div>
-          </div>
-        </div>
+        <CurrentForecast />
 
         {/* Week Forecast */}
         <WeeklyForecast forecast={weeklyForecastData}/>
