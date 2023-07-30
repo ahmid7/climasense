@@ -4,7 +4,7 @@ import Image from 'next/image'
 function CurrentForecast() {
   return (
     <section>
-      <div className='rounded-[20px] max-w-[352px] py-4 border-2 border-white '>
+      <div className='rounded-[20px] py-4 border-2 border-white '>
         <div className='px-4'>
           <div className='flex gap-x-[56px]'>
             <div className='[&_span]:block'>

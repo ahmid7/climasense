@@ -89,11 +89,22 @@ export default function Home() {
           </header>
         </div>
 
-        {/* current weather */}
-        <CurrentForecast />
+        <div className='flex'>
+          <div className='min-w-[352px]'>
+            {/* current weather */}
+            <CurrentForecast />
 
-        {/* Week Forecast */}
-        <WeeklyForecast forecast={weeklyForecastData}/>
+            {/* Week Forecast */}
+            <WeeklyForecast 
+              forecast={weeklyForecastData}
+            />
+          </div>
+
+          <div className='flex-1'>
+
+          </div>
+        </div>
+
       </section>
     </main>
   )
