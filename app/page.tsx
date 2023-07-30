@@ -1,4 +1,38 @@
+import WeeklyForecast from '@/components/WeeklyForecast'
 import Image from 'next/image'
+
+const weeklyForecastData = [
+  {
+    day: 'monday',
+    temp: 5,
+    icon: 'cloudy',
+    date: '27 July'
+  },
+  {
+    day: 'monday',
+    temp: 5,
+    icon: 'cloudy',
+    date: '27 July'
+  },
+  {
+    day: 'monday',
+    temp: 5,
+    icon: 'cloudy',
+    date: '27 July'
+  },
+  {
+    day: 'monday',
+    temp: 5,
+    icon: 'cloudy',
+    date: '27 July'
+  },
+  {
+    day: 'monday',
+    temp: 5,
+    icon: 'cloudy',
+    date: '27 July'
+  }
+]
 
 export default function Home() {
   return (
@@ -109,9 +143,7 @@ export default function Home() {
         </div>
 
         {/* Week Forecast */}
-        <div className='py-'>
-
-        </div>
+        <WeeklyForecast forecast={weeklyForecastData}/>
       </section>
     </main>
   )
