@@ -64,6 +64,42 @@ function TodayWeatherDetails() {
 
         <div className='border-2 border-white rounded-[20px] p-4'>
           <p>Sunrise & Sunset</p>
+
+          <div className='flex flex-col justify-between items-center py-10 h-full'>
+            <div className='flex '>
+              <Image
+                src="/svg/sunrise.svg"
+                alt='sunrise-image'
+                priority={true}
+                quality={100}
+                width={50}
+                height={20}
+            
+              />
+
+              <div className='[&_span]:block'>
+                <span>Sunrise</span>
+                <span>6:46PM</span>
+              </div>
+            </div>
+
+            <div className='flex'>
+              <Image
+                src="/svg/sunset.svg"
+                alt='sunset-image'
+                priority={true}
+                quality={100}
+                width={50}
+                height={20}
+            
+              />
+
+              <div className='[&_span]:block'>
+                <span>Sunset</span>
+                <span>5:39PM</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 

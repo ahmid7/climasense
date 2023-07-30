@@ -92,7 +92,7 @@ export default function Home() {
           </header>
         </div>
 
-        <div className='flex space-x-10'>
+        <div className='flex space-x-10 '>
           <div className='min-w-[352px]'>
             {/* current weather */}
             <CurrentForecast />
@@ -103,7 +103,7 @@ export default function Home() {
             />
           </div>
 
-          <div className='flex-1'>
+          <div className='flex-1 space-y-10'>
             {/* Today Weather Details */}
             <TodayWeatherDetails />
 
