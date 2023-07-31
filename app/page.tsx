@@ -58,7 +58,7 @@ export default function Home() {
               <span className="h-fit">ClimaSense</span>
             </div>
 
-            <div className="flex min-w-[300px] xl:min-w-[428px] items-center gap-x-4 bg-[#2b2b2e] px-4 xl:px-6 py-1 rounded-full">
+            <div className="flex min-w-[250px] lg:min-w-[300px] xl:min-w-[428px] items-center gap-x-4 bg-[#2b2b2e] px-4 xl:px-6 py-1 rounded-full">
               <Image
                 alt="search-icon"
                 priority={true}
@@ -90,8 +90,8 @@ export default function Home() {
           </header>
         </div>
 
-        <div className="flex space-x-8 xl:space-x-10 ">
-          <div className="min-w-[280px] xl:min-w-[352px] space-y-8 xl:space-y-[39px]">
+        <div className="flex space-x-6 lg:space-x-8 xl:space-x-10 ">
+          <div className="min-w-[150px] lg:min-w-[280px] xl:min-w-[352px] space-y-8 xl:space-y-[39px]">
             {/* current weather */}
             <CurrentForecast />
 

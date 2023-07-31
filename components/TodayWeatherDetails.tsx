@@ -44,7 +44,7 @@ function TodayWeatherDetails() {
     <section className="border-2 border-white p-4 rounded-[20px]">
       <header className="text-xl xl:text-2xl font-medium">Today's Highlights</header>
 
-      <div className="grid grid-cols-2 gap-x-5 xl:gap-x-6 pt-8">
+      <div className="grid lg:grid-cols-2 gap-x-5 xl:gap-x-6 gap-y-4 lg:gap-y-0 pt-8">
         <div className="border-2 border-white p-4 rounded-[20px]">
           <div className="flex items-center justify-between">
             <span>Air Quality Index</span>
@@ -82,7 +82,7 @@ function TodayWeatherDetails() {
         <div className="border-2 border-white rounded-[20px] p-4">
           <p>Sunrise & Sunset</p>
 
-          <div className="flex flex-col justify-between items-center py-8 xl:py-10 h-full">
+          <div className="flex lg:flex-col justify-between items-center lg:py-8 xl:py-10 h-full">
             <div className="flex ">
               <Image
                 src="/svg/sunrise.svg"
@@ -118,8 +118,8 @@ function TodayWeatherDetails() {
         </div>
       </div>
 
-      <div className="mt-2.5">
-        <div className="grid grid-cols-4 gap-x-3 xl:gap-x-4">
+      <div className="pt-4 lg:pt-2.5">
+        <div className="grid grid-cols-3 lg:grid-cols-4 gap-y-3 gap-x-3 xl:gap-x-4">
           {
             weatherDetailsKey.map(( key ) => {
               return(
@@ -128,7 +128,7 @@ function TodayWeatherDetails() {
                   className={`rounded-[20px] border-2 border-white font-medium p-3 space-y-[28px] ${ key === 'temp' ? 'hidden': '' }`}
                 >
                   <span className="capitalize">{key}</span>
-                  <div className="flex gap-x-5 xl:gap-x-[28px]">
+                  <div className="flex gap-x-3 lg:gap-x-5 xl:gap-x-[28px]">
                     <Image
                       src={`/svg/${key}.svg`}
                       alt="detail"

@@ -19,8 +19,8 @@ function WeeklyForecast({ forecast }: { forecast: forecast }) {
         {forecast.map((data, index) => {
           return (
             <div key={index} className="flex justify-between items-center">
-              <div className="flex space-x-[27px] items-center">
-                <div className="flex items-center space-x-5">
+              <div className="flex space-x-5 lg:space-x-[27px] items-center">
+                <div className="flex items-center space-x-4 lg:space-x-5">
                   <Image
                     src="/svg/weather-icon.svg"
                     alt="weather-icon"
