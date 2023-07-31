@@ -99,7 +99,7 @@ export default function Home() {
             <WeeklyForecast forecast={weeklyForecastData} />
           </div>
 
-          <div className="flex-1 space-y-10">
+          <div className="flex-1 space-y-8 xl:space-y-10">
             {/* Today Weather Details */}
             <TodayWeatherDetails />
 
