@@ -36,7 +36,7 @@ const main: WeatherData = {
   "visibility": 10,
 }
 
-
+/* eslint-disable react/no-unescaped-entities */
 function TodayWeatherDetails() {
   const weatherDetailsKey = Object.keys(main) as Array<keyof WeatherData>;
 
@@ -162,3 +162,5 @@ function TodayWeatherDetails() {
 }
 
 export default TodayWeatherDetails;
+
+/* eslint-enable react/no-unescaped-entities */
