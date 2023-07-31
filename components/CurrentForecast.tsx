@@ -4,12 +4,12 @@ import Image from "next/image";
 function CurrentForecast() {
   return (
     <section>
-      <div className="rounded-[20px] py-4 border-2 border-white ">
+      <div className="rounded-[20px] py-3 xl:py-4 border-2 border-white ">
         <div className="px-4">
           <div className="flex gap-x-[56px]">
             <div className="[&_span]:block">
-              <span className="text-2xl font-medium">Now</span>
-              <span className="text-[40px] ">5&deg;C</span>
+              <span className="text-xl xl:text-2xl font-medium">Now</span>
+              <span className="text-4xl xl:text-[40px] ">5&deg;C</span>
             </div>
 
             <Image
@@ -21,12 +21,12 @@ function CurrentForecast() {
               height={56}
             />
           </div>
-          <span className="text-lg font-medium">Broken Cloud</span>
+          <span className="text-base xl:text-lg font-medium">Broken Cloud</span>
         </div>
 
-        <div className="my-[18px] w-full h-[3px] bg-[#8a8383]" />
+        <div className="my-4 xl:my-[18px] w-full h-[3px] bg-[#8a8383]" />
 
-        <div className="space-y-[29px] [&_div]:flex [&_div]:items-center [&_div]:gap-x-6 px-4">
+        <div className="space-y-6 xl:space-y-[29px] [&_div]:flex [&_div]:items-center [&_div]:gap-x-4 [&_div]:xl:gap-x-6 px-4">
           <div>
             <Image
               alt="calender-icon"
@@ -48,6 +48,7 @@ function CurrentForecast() {
               quality={100}
               width={32}
               height={32}
+              className="object-contain"
             />
 
             <span>Kwara, Nigeria</span>
