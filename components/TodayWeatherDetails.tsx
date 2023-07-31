@@ -42,9 +42,9 @@ function TodayWeatherDetails() {
 
   return (
     <section className="border-2 border-white p-4 rounded-[20px]">
-      <header className="text-2xl font-medium">Today's Highlights</header>
+      <header className="text-xl xl:text-2xl font-medium">Today's Highlights</header>
 
-      <div className="grid grid-cols-2 gap-x-6 pt-8">
+      <div className="grid grid-cols-2 gap-x-5 xl:gap-x-6 pt-8">
         <div className="border-2 border-white p-4 rounded-[20px]">
           <div className="flex items-center justify-between">
             <span>Air Quality Index</span>
@@ -62,7 +62,7 @@ function TodayWeatherDetails() {
             />
           </div>
 
-          <div className="grid grid-cols-2 items-center gap-y-[27px]">
+          <div className="grid grid-cols-2 items-center gap-y-6 xl:gap-y-[27px]">
             {
             airQualityDetails.map((detail, index) => (
               <div
@@ -73,7 +73,7 @@ function TodayWeatherDetails() {
                 `}
               >
                 <span className="text-base ">{detail.name}</span>
-                <span className="text-xl font-medium">{detail.value}</span>
+                <span className="text-base xl:text-xl font-medium">{detail.value}</span>
               </div>
             ))}
           </div>
@@ -82,7 +82,7 @@ function TodayWeatherDetails() {
         <div className="border-2 border-white rounded-[20px] p-4">
           <p>Sunrise & Sunset</p>
 
-          <div className="flex flex-col justify-between items-center py-10 h-full">
+          <div className="flex flex-col justify-between items-center py-8 xl:py-10 h-full">
             <div className="flex ">
               <Image
                 src="/svg/sunrise.svg"
@@ -119,7 +119,7 @@ function TodayWeatherDetails() {
       </div>
 
       <div className="mt-2.5">
-        <div className="grid grid-cols-4 gap-x-4">
+        <div className="grid grid-cols-4 gap-x-3 xl:gap-x-4">
           {
             weatherDetailsKey.map(( key ) => {
               return(
@@ -128,7 +128,7 @@ function TodayWeatherDetails() {
                   className={`rounded-[20px] border-2 border-white font-medium p-3 space-y-[28px] ${ key === 'temp' ? 'hidden': '' }`}
                 >
                   <span className="capitalize">{key}</span>
-                  <div className="flex gap-x-[28px]">
+                  <div className="flex gap-x-5 xl:gap-x-[28px]">
                     <Image
                       src={`/svg/${key}.svg`}
                       alt="detail"
@@ -138,9 +138,17 @@ function TodayWeatherDetails() {
                       height={30}
                       className="object-fill"
                     />
-                    <span className="text-2xl">
+                    <span className="text-xl xl:text-2xl">
                       {main[key]} 
-                      { key == 'humidity' ? '%' : key == 'pressure' ? 'hPa' : key == 'visibility' ? 'Km' : '°C' }
+                      <span 
+                        className="text-sm"
+                      >
+                        { 
+                          key == 'humidity' ? '%' : 
+                          key == 'pressure' ? 'hPa' : 
+                          key == 'visibility' ? 'Km' : '°C' 
+                        }
+                      </span>
                     </span>
                   </div>
                 </div>
