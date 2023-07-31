@@ -42,7 +42,7 @@ function TodayWeatherDetails() {
 
   return (
     <section className="border-2 border-white p-4 rounded-[20px]">
-      <header className="text-xl xl:text-2xl font-medium">Today's Highlights</header>
+      <header className="text-xl xl:text-2xl font-medium">Today&apos;s Highlights</header>
 
       <div className="grid lg:grid-cols-2 gap-x-5 xl:gap-x-6 gap-y-4 lg:gap-y-0 pt-8">
         <div className="border-2 border-white p-4 rounded-[20px]">
