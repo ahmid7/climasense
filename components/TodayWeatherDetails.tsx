@@ -119,7 +119,7 @@ function TodayWeatherDetails() {
       </div>
 
       <div className="pt-4 lg:pt-2.5">
-        <div className="grid grid-cols-3 lg:grid-cols-4 gap-y-3 gap-x-3 xl:gap-x-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-3 gap-x-3 xl:gap-x-4">
           {
             weatherDetailsKey.map(( key ) => {
               return(

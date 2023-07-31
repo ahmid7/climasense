@@ -41,7 +41,7 @@ function TodayWeatherHighlight() {
     <section>
       <header className="text-xl xl:text-2xl font-medium">Today at</header>
 
-      <div className="py-1.5 grid grid-cols-8 text-sm space-x-1.5">
+      <div className="py-1.5 grid grid-cols-4 md:grid-cols-8 text-sm md:gap-x-1.5 gap-y-2 gap-x-2">
         {TodayWeatherData.map((data: any, index: number) => {
           return (
             <div

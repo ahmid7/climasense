@@ -41,10 +41,10 @@ const weeklyForecastData = [
 export default function Home() {
   return (
     <main className="bg-black">
-      <section className="px-8 xl:px-10 space-y-8 xl:space-y-9 pt-2 xl:pt-4">
+      <section className="px-4 md:px-8 xl:px-10 space-y-4 md:space-y-8 xl:space-y-9 pt-2 xl:pt-4">
         <div>
-          <header className="flex items-center justify-between py-3.5">
-            <div className="flex items-center gap-x-2 font-semibold text-xl xl:text-2xl">
+          <header className="flex items-center justify-between py-3 md:py-3.5">
+            <div className="flex items-center gap-x-2 font-semibold text-lg md:text-xl xl:text-2xl">
               <Image
                 src="/svg/logo.svg"
                 alt="logo-image"
@@ -58,7 +58,7 @@ export default function Home() {
               <span className="h-fit">ClimaSense</span>
             </div>
 
-            <div className="flex min-w-[250px] lg:min-w-[300px] xl:min-w-[428px] items-center gap-x-4 bg-[#2b2b2e] px-4 xl:px-6 py-1 rounded-full">
+            <div className="hidden md:flex min-w-[250px] lg:min-w-[300px] xl:min-w-[428px] items-center gap-x-4 bg-[#2b2b2e] px-4 xl:px-6 py-1 rounded-full">
               <Image
                 alt="search-icon"
                 priority={true}
@@ -75,7 +75,7 @@ export default function Home() {
               />
             </div>
 
-            <button className="flex items-center space-x-3 rounded-full bg-[#575796] w-fit px-3 py-2  xl:py-2.5 ">
+            <button className="hidden  md:flex items-center space-x-3 rounded-full bg-[#575796] w-fit px-3 py-2  xl:py-2.5">
               <Image
                 alt="location-icon"
                 priority={true}
@@ -90,8 +90,8 @@ export default function Home() {
           </header>
         </div>
 
-        <div className="flex space-x-6 lg:space-x-8 xl:space-x-10 ">
-          <div className="min-w-[150px] lg:min-w-[280px] xl:min-w-[352px] space-y-8 xl:space-y-[39px]">
+        <div className="flex flex-col md:flex-row md:space-x-6 lg:space-x-8 xl:space-x-10 space-y-3 md:space-y-0">
+          <div className="md:min-w-[150px] lg:min-w-[280px] xl:min-w-[352px] space-y-4 md:space-y-8 xl:space-y-[39px]">
             {/* current weather */}
             <CurrentForecast />
 
@@ -99,7 +99,7 @@ export default function Home() {
             <WeeklyForecast forecast={weeklyForecastData} />
           </div>
 
-          <div className="flex-1 space-y-8 xl:space-y-10">
+          <div className="md:flex-1 space-y-4 md:space-y-8 xl:space-y-10">
             {/* Today Weather Details */}
             <TodayWeatherDetails />
 
