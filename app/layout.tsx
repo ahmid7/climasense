@@ -1,8 +1,8 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Poppins } from 'next/font/google'
+import { Lato } from 'next/font/google'
 
-const fontPoppins = Poppins({
+const fontLato = Lato({
   weight: ['400', '700'],
   subsets: ['latin'],
   display: 'swap',
@@ -20,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={fontPoppins.className}>{children}</body>
+      <body className={fontLato.className}>{children}</body>
     </html>
   )
 }

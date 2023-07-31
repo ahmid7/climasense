@@ -41,24 +41,24 @@ const weeklyForecastData = [
 export default function Home() {
   return (
     <main className="bg-black">
-      <section className="px-10">
-        <div className="pb-9">
+      <section className="px-10 space-y-9 pt-4">
+        <div>
           <header className="flex items-center justify-between py-3.5">
-            <div className="flex items-center gap-x-2 font-semibold text-2xl">
+            <div className="flex items-center gap-x-2 font-semibold text-xl xl:text-2xl">
               <Image
                 src="/svg/logo.svg"
                 alt="logo-image"
                 priority={true}
                 quality={100}
-                width={65}
-                height={65}
-                className=""
+                width={60}
+                height={60}
+                className="object-fit"
               />
 
               <span className="h-fit">ClimaSense</span>
             </div>
 
-            <div className="flex min-w-[428px] items-center gap-x-4 bg-[#2b2b2e] px-6 py-1 rounded-full">
+            <div className="flex min-w-[300px] xl:min-w-[428px] items-center gap-x-4 bg-[#2b2b2e] px-6 py-1 rounded-full">
               <Image
                 alt="search-icon"
                 priority={true}
@@ -90,8 +90,8 @@ export default function Home() {
           </header>
         </div>
 
-        <div className="flex space-x-10 ">
-          <div className="min-w-[352px]">
+        <div className="flex space-x-8 xl:space-x-10 ">
+          <div className="min-w-[280px] xl:min-w-[352px]">
             {/* current weather */}
             <CurrentForecast />
 
