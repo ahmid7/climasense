@@ -10,12 +10,12 @@ type forecast = {
 
 function WeeklyForecast({ forecast }: { forecast: forecast }) {
   return (
-    <section className="max-w-[352px] pt-[39px]">
-      <header className="capitalize font-semibold text-2xl ">
+    <section className="">
+      <header className="capitalize font-semibold text-xl xl:text-2xl ">
         5 days Forecast
       </header>
 
-      <div className="py-[30px] px-4 my-[9px] border-2 border-white rounded-[20px] space-y-5">
+      <div className="py-4 px-4 my-[9px] border-2 border-white rounded-[20px] space-y-5">
         {forecast.map((data, index) => {
           return (
             <div key={index} className="flex justify-between items-center">

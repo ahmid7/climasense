@@ -91,7 +91,7 @@ export default function Home() {
         </div>
 
         <div className="flex space-x-8 xl:space-x-10 ">
-          <div className="min-w-[280px] xl:min-w-[352px]">
+          <div className="min-w-[280px] xl:min-w-[352px] space-y-8 xl:space-y-[39px]">
             {/* current weather */}
             <CurrentForecast />
 
