@@ -20,7 +20,26 @@ const airQualityDetails = [
   },
 ];
 
+interface WeatherData {
+  temp: number;
+  feels_like: number;
+  pressure: number;
+  humidity: number;
+  [key: string]: number; // Add an index signature to allow any other property with a number value
+}
+
+const main: WeatherData = {
+  "temp": 25.5,
+  "feels_like": 26.3,
+  "pressure": 1015,
+  "humidity": 60,
+  "visibility": 10,
+}
+
+
 function TodayWeatherDetails() {
+  const weatherDetailsKey = Object.keys(main) as Array<keyof WeatherData>;
+
   return (
     <section className="border-2 border-white p-4 rounded-[20px]">
       <header className="text-2xl font-medium">Today's Highlights</header>
@@ -44,13 +63,14 @@ function TodayWeatherDetails() {
           </div>
 
           <div className="grid grid-cols-2 items-center gap-y-[27px]">
-            {airQualityDetails.map((detail, index) => (
+            {
+            airQualityDetails.map((detail, index) => (
               <div
                 key={index}
                 className={`
-                    ${index % 2 === 0 ? "text-left" : "text-right"} 
-                    [&_span]:block 
-                  `}
+                  ${index % 2 === 0 ? "text-left" : "text-right"} 
+                  [&_span]:block 
+                `}
               >
                 <span className="text-base ">{detail.name}</span>
                 <span className="text-xl font-medium">{detail.value}</span>
@@ -98,7 +118,37 @@ function TodayWeatherDetails() {
         </div>
       </div>
 
-      <div></div>
+      <div className="mt-2.5">
+        <div className="grid grid-cols-4 gap-x-4">
+          {
+            weatherDetailsKey.map(( key ) => {
+              return(
+                <div 
+                  key={ key }
+                  className={`rounded-[20px] border-2 border-white font-medium p-3 space-y-[28px] ${ key === 'temp' ? 'hidden': '' }`}
+                >
+                  <span className="capitalize">{key}</span>
+                  <div className="flex gap-x-[28px]">
+                    <Image
+                      src={`/svg/${key}.svg`}
+                      alt="detail"
+                      priority={true}
+                      quality={100}
+                      width={30}
+                      height={30}
+                      className="object-fill"
+                    />
+                    <span className="text-2xl">
+                      {main[key]} 
+                      { key == 'humidity' ? '%' : key == 'pressure' ? 'hPa' : key == 'visibility' ? 'Km' : '°C' }
+                    </span>
+                  </div>
+                </div>
+              )
+            })
+          }
+        </div>
+      </div>
     </section>
   );
 }
