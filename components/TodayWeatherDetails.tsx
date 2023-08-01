@@ -41,11 +41,11 @@ function TodayWeatherDetails() {
   const weatherDetailsKey = Object.keys(main) as Array<keyof WeatherData>;
 
   return (
-    <section className="border-2 border-white p-4 rounded-[20px]">
+    <section className="card elevated-card p-4 rounded-[20px]">
       <header className="text-xl xl:text-2xl font-medium">Today&apos;s Highlights</header>
 
       <div className="grid lg:grid-cols-2 gap-x-5 xl:gap-x-6 gap-y-4 lg:gap-y-0 pt-8">
-        <div className="border-2 border-white p-4 rounded-[20px]">
+        <div className="elevated-card p-4 rounded-[20px]">
           <div className="flex items-center justify-between">
             <span>Air Quality Index</span>
             <span className="bg-[#03B454] px-5 py-1 rounded-full">Good</span>
@@ -79,7 +79,7 @@ function TodayWeatherDetails() {
           </div>
         </div>
 
-        <div className="border-2 border-white rounded-[20px] p-4">
+        <div className="elevated-card rounded-[20px] p-4">
           <p>Sunrise & Sunset</p>
 
           <div className="flex lg:flex-col justify-between items-center lg:py-8 xl:py-10 h-full">
@@ -125,7 +125,7 @@ function TodayWeatherDetails() {
               return(
                 <div 
                   key={ key }
-                  className={`rounded-[20px] border-2 border-white font-medium p-3 space-y-[28px] ${ key === 'temp' ? 'hidden': '' }`}
+                  className={`rounded-[20px] elevated-card font-medium p-3 space-y-[28px] ${ key === 'temp' ? 'hidden': '' }`}
                 >
                   <span className="capitalize">{key}</span>
                   <div className="flex gap-x-3 lg:gap-x-5 xl:gap-x-[28px]">

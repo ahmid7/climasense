@@ -3,8 +3,8 @@ import Image from "next/image";
 
 function CurrentForecast() {
   return (
-    <section>
-      <div className="rounded-[20px] py-3 xl:py-4 border-2 border-white ">
+    <section className="">
+      <div className="rounded-[20px] py-3 xl:py-4 card elevated-card">
         <div className="px-4">
           <div className="flex gap-x-[56px]">
             <div className="[&_span]:block">

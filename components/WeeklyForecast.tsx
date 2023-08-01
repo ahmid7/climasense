@@ -15,7 +15,7 @@ function WeeklyForecast({ forecast }: { forecast: forecast }) {
         5 days Forecast
       </header>
 
-      <div className="py-4 px-4 my-[9px] border-2 border-white rounded-[20px] space-y-5">
+      <div className="py-4 px-4 my-[9px] elevated-card rounded-[20px] space-y-5 card">
         {forecast.map((data, index) => {
           return (
             <div key={index} className="flex justify-between items-center">

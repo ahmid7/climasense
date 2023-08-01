@@ -42,7 +42,7 @@ const weeklyForecastData = [
 export default function Home() {
 
   return (
-    <main className="bg-black">
+    <main className="">
       <section className="px-4 md:px-8 xl:px-10 space-y-4 md:space-y-8 xl:space-y-9 pt-2 xl:pt-4">
         <Header />
 
@@ -52,7 +52,9 @@ export default function Home() {
             <CurrentForecast />
 
             {/* Week Forecast */}
-            <WeeklyForecast forecast={weeklyForecastData} />
+            <WeeklyForecast 
+              forecast={weeklyForecastData} 
+            />
           </div>
 
           <div className="md:flex-1 space-y-4 md:space-y-8 xl:space-y-10">
