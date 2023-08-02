@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
@@ -44,7 +44,22 @@ const weeklyForecastData = [
 ];
 
 export default function Home() {
-  
+
+  const [ city, setCity ] = useState('lagos')
+
+  const { isLoading, error, data, isFetching } = useQuery({
+    queryKey: ['repoData'],
+    queryFn: () =>
+      axios
+        .get(`/api/current_weather?city=${city}`)
+        .then((res) => res.data),
+  })
+
+  console.log( data )
+
+  console.log( city )
+
+
   return (
     <main className="">
       <section className="px-4 md:px-8 xl:px-10 space-y-4 md:space-y-8 xl:space-y-9 pt-2 xl:pt-4">
