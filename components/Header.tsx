@@ -25,7 +25,7 @@ function Header() {
   };
   return (
     <section>
-      <header className="flex items-center justify-between py-3 md:py-3.5">
+      <header className="flex items-center justify-between py-3 md:py-3.5 elevate-card">
         <div className="flex items-center gap-x-2 font-semibold text-lg md:text-xl xl:text-2xl">
           <Image
             src="/svg/logo.svg"
