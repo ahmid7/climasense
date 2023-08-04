@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { HTMLInputTypeAttribute, useState } from "react";
 import Image from "next/image";
 
 function Header({ 
@@ -29,6 +29,10 @@ function Header({
   const handleCloseModal = () => {
     setModalOpen(false);
   };
+
+  const updateSearchCity = (e: any) => {
+    setInputSearchCity(e.target.value)
+  }
 
   return (
     <section>
@@ -59,9 +63,10 @@ function Header({
 
           <input
             type="text"
-            value=""
+            value={ inputSearchCity }
             placeholder="Enter City"
-            className="bg-inherit flex-1 text-white outline-none border-none py-1 xl:py-2 rounded-full text-opacity-80 text-sm hidden md:block"
+            className="bg-inherit flex-1 text-white outline-none py-1 xl:py-2 text-opacity-80 text-sm hidden md:block"
+            onChange={ updateSearchCity }
           />
         </div>
 
