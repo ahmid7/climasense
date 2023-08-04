@@ -3,8 +3,14 @@
 import React, { useState } from "react";
 import Image from "next/image";
 
-function Header() {
+function Header({ 
+  updateCity 
+}: { 
+  updateCity: (value: string) => void }
+) {
   const [modalOpen, setModalOpen] = useState(false);
+
+  const [ inputSearchCity, setInputSearchCity ] = useState('')
 
   const [searchList, setSearchList] = useState([
     // "lagos",
@@ -23,6 +29,7 @@ function Header() {
   const handleCloseModal = () => {
     setModalOpen(false);
   };
+
   return (
     <section>
       <header className="flex items-center justify-between py-3 md:py-3.5 elevate-card">
@@ -52,6 +59,7 @@ function Header() {
 
           <input
             type="text"
+            value=""
             placeholder="Enter City"
             className="bg-inherit flex-1 text-white outline-none border-none py-1 xl:py-2 rounded-full text-opacity-80 text-sm hidden md:block"
           />
@@ -86,8 +94,8 @@ function Header() {
         className={`modalBackdrop ${modalOpen ? "open" : ""}`}
         onClick={handleCloseModal}
       >
-        <div className="modalContent" onClick={(e) => e.stopPropagation()}>
-          <div className="border-b border-blue-900 flex justify-between items-center px-4">
+        <div className="modalContent glass-container2 elevated-card" onClick={(e) => e.stopPropagation()}>
+          <div className="border-b border-blue-900 flex justify-between items-center">
             <div className="flex gap-x-2 py-2">
               <Image
                 alt="search-icon"

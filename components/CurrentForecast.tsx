@@ -1,7 +1,19 @@
 import React from "react";
 import Image from "next/image";
 
-function CurrentForecast() {
+type CurrentForecastProps = {
+  temperature: number;
+  icon: string;
+  description: string;
+  city: string;
+}
+
+function CurrentForecast({ 
+  temperature, 
+  icon, 
+  description, 
+  city,
+}: CurrentForecastProps) {
   return (
     <section className="">
       <div className="rounded-[20px] py-3 xl:py-4 card elevated-card">
@@ -9,19 +21,19 @@ function CurrentForecast() {
           <div className="flex gap-x-[56px]">
             <div className="[&_span]:block">
               <span className="text-xl xl:text-2xl font-medium">Now</span>
-              <span className="text-4xl xl:text-[40px] ">5&deg;C</span>
+              <span className="text-4xl xl:text-[40px]">{ temperature }&deg;C</span>
             </div>
 
             <Image
               alt="weather-icon"
               priority={true}
               quality={100}
-              src="/svg/weather-icon.svg"
+              src={`http://openweathermap.org/img/w/${icon}.png`}
               width={62}
               height={56}
             />
           </div>
-          <span className="text-base xl:text-lg font-medium">Broken Cloud</span>
+          <span className="text-base xl:text-lg font-medium">{ description }</span>
         </div>
 
         <div className="my-4 xl:my-[18px] w-full h-[3px] bg-[#8a8383]" />
@@ -51,7 +63,7 @@ function CurrentForecast() {
               className="object-contain"
             />
 
-            <span>Kwara, Nigeria</span>
+            <span>{ city }</span>
           </div>
         </div>
       </div>

@@ -41,13 +41,15 @@ body {
 }
 
 .modalContent {
-  background-color: red;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   opacity: 0;
   transform: translateY(-50px);
   transition: opacity 0.3s ease, transform 0.3s ease;
-  min-width: 300px;
+  min-width: 350px;
+  -webkit-transition: opacity 0.3s ease, transform 0.3s ease;
+  -moz-transition: opacity 0.3s ease, transform 0.3s ease;
+  -ms-transition: opacity 0.3s ease, transform 0.3s ease;
+  -o-transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .modalBackdrop.open {
@@ -72,9 +74,16 @@ body {
 .glass-container {
   background-color: rgba(255, 255, 255, 0.2); /* Inner card background */
   backdrop-filter: blur(10px); /* Inner card blur */
-  padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.2); /* Inner card shadow */
+}
+
+.glass-container2 {
+  padding:20px 0;
+  background-color: rgba(255, 255, 255, 0.2); /* Inner card background */
+  backdrop-filter: blur(10px); /* Inner card blur */
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2); 
 }
 
 .elevated-card {

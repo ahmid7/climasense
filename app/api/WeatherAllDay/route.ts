@@ -6,7 +6,7 @@ export async function GET( req: NextRequest ) {
 
   const city = searchParams.get('city')
 
-  const res = await fetch(`https://climasense-1-g2114242.deta.app/current_weather/${city}`, {
+  const res = await fetch(`https://climasense-1-g2114242.deta.app/weather_forecast/${city}`, {
     headers: {
       'Content-Type': 'application/json',
     },
