@@ -30,7 +30,6 @@ export async function GET( req: NextRequest ) {
     return NextResponse.json({ data });
   } catch (error) {
     // Handle other errors gracefully
-    console.error('Error while fetching weather data:', error.message);
     return NextResponse.json({ status: 500 });
   }
 
