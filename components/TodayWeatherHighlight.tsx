@@ -26,7 +26,7 @@ function TodayWeatherHighlight({ weather_forecast }: WeatherForecastComponentPro
     <section>
       <header className=" text-xl xl:text-2xl font-medium">Today at</header>
 
-      <div className="py-1.5 grid grid-cols-4 md:grid-cols-8 text-sm md:gap-x-1.5 gap-y-2 gap-x-2 ">
+      <div className="py-1.5 grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 text-sm md:gap-x-1.5 gap-y-2 gap-x-2 ">
         {weather_forecast_reduced?.map((data: any, index: number) => {
           // Removing the date "2023-08-05 " from the string
           const timeString: string = data.date_f.slice(11);
@@ -54,7 +54,7 @@ function TodayWeatherHighlight({ weather_forecast }: WeatherForecastComponentPro
                 width={38}
                 height={38}
               />
-              <span className="text-2xl leading-normal ">{Math.round(data.temperature_f - 273.15)}&deg;<span>C</span></span>
+              <span className="text-xl xl:text-2xl leading-normal ">{Math.round(data.temperature_f - 273.15)}&deg;<span>C</span></span>
             </div>
           );
         })}

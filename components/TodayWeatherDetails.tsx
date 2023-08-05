@@ -20,44 +20,51 @@ const airQualityDetails = [
   },
 ];
 
-interface WeatherData {
-  temp: number;
-  feels_like: number;
-  pressure: number;
+type TodayWeatherDetailsProps = {
   humidity: number;
-  [key: string]: number; // Add an index signature to allow any other property with a number value
+  pressure: number;
+  wind_speed: number;
+  feels_like: number;
+  sunrise: string;
+  sunset: string;
 }
 
-const main: WeatherData = {
-  "temp": 25.5,
-  "feels_like": 26.3,
-  "pressure": 1015,
-  "humidity": 60,
-  "visibility": 10,
-}
 
-interface WeatherForecastData {
-  datetime_f: number;
-  temperature_f: number;
-  description_f: string;
-  humidity_f: number;
-  wind_speed_f: number;
-  date_f: string;
-  pressure_f: number;
-  feels_like_f: number;
-  icon_f: string;
-  main_f: string;
-}
-
-// Props interface for the WeatherForecastComponent
-interface WeatherForecastComponentProps {
-  weather_forecast: WeatherForecastData[];
-}
 
 /* eslint-disable react/no-unescaped-entities */
-function TodayWeatherDetails() {
+function TodayWeatherDetails({ humidity, pressure, wind_speed, feels_like, sunrise, sunset  }:  TodayWeatherDetailsProps ) {
 
-  const weatherDetailsKey = Object.keys(main) as Array<keyof WeatherData>;
+  const weatherDetails = [ 
+    { 
+      name: "humidity",
+      value: humidity,
+      icon: "/svg/humidity.svg",
+    },
+    {
+      name: "pressure",
+      value: pressure,
+      icon: "/svg/pressure.svg",
+    },
+    {
+      name: "wind_speed",
+      value: wind_speed,
+      icon: "/svg/wind-speed.svg",
+    },
+    {
+      name: "feels like",
+      value: feels_like,
+      icon: "/svg/feels_like.svg",
+    }
+  ]
+
+  const sunriseDate = new Date(parseInt(sunrise) * 1000);
+
+  // Convert sunset timestamp to Date object
+  const sunsetDate = new Date(parseInt(sunset) * 1000);
+
+  // Get the human-readable time in local time zone
+  const sunriseTime = sunriseDate.toLocaleTimeString();
+  const sunsetTime = sunsetDate.toLocaleTimeString();
 
   return (
     <section className="card elevated-card p-4 rounded-[20px]">
@@ -114,7 +121,7 @@ function TodayWeatherDetails() {
 
               <div className="[&_span]:block">
                 <span>Sunrise</span>
-                <span>6:46PM</span>
+                <span>{ sunriseTime }</span>
               </div>
             </div>
 
@@ -130,7 +137,7 @@ function TodayWeatherDetails() {
 
               <div className="[&_span]:block">
                 <span>Sunset</span>
-                <span>5:39PM</span>
+                <span>{ sunsetTime }</span>
               </div>
             </div>
           </div>
@@ -140,16 +147,16 @@ function TodayWeatherDetails() {
       <div className="pt-4 lg:pt-2.5">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-3 gap-x-3 xl:gap-x-4">
           {
-            weatherDetailsKey.map(( key ) => {
+            weatherDetails.map(( detail ) => {
               return(
                 <div 
-                  key={ key }
-                  className={`rounded-[20px] elevated-card font-medium p-3 space-y-[28px] ${ key === 'temp' ? 'hidden': '' }`}
+                  key={ detail.name }
+                  className={`rounded-[20px] elevated-card font-medium p-3 space-y-[28px] }`}
                 >
-                  <span className="capitalize">{key}</span>
+                  <span className="capitalize">{detail.name}</span>
                   <div className="flex gap-x-3 lg:gap-x-5 xl:gap-x-[28px]">
                     <Image
-                      src={`/svg/${key}.svg`}
+                      src={ detail.icon }
                       alt="detail"
                       priority={true}
                       quality={100}
@@ -158,14 +165,14 @@ function TodayWeatherDetails() {
                       className="object-fill"
                     />
                     <span className="text-xl xl:text-2xl">
-                      {main[key]} 
+                      {detail.value} 
                       <span 
                         className="text-sm"
                       >
                         { 
-                          key == 'humidity' ? '%' : 
-                          key == 'pressure' ? 'hPa' : 
-                          key == 'visibility' ? 'Km' : '°C' 
+                          detail.name == 'humidity' ? '%' : 
+                          detail.name == 'pressure' ? 'hPa' : 
+                          detail.name == 'wind_speed' ? 'm/s' : '°C' 
                         }
                       </span>
                     </span>

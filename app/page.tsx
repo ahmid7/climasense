@@ -9,6 +9,7 @@ import TodayWeatherDetails from "@/components/TodayWeatherDetails";
 import TodayWeatherHighlight from "@/components/TodayWeatherHighlight";
 import WeeklyForecast from "@/components/WeeklyForecast";
 import Header from "@/components/Header";
+import Loader from "@/components/Loader";
 
 const weeklyForecastData = [
   {
@@ -45,6 +46,8 @@ const weeklyForecastData = [
 
 export default function Home() {
 
+  const [ Loading, setLoading ] = useState(true)
+
   const [ city, setCity ] = useState('kwara')
 
   const { isLoading, error, data, isFetching, refetch } = useQuery({
@@ -59,11 +62,21 @@ export default function Home() {
     setCity(value)
   }
 
+  console.log( Loading )
+
   React.useEffect(() => {
     refetch()
   }, [city])
 
-  
+  React.useEffect(() => {
+    if (data !== 'undefined') {
+      setTimeout(() => {
+        setLoading(false)
+      }, 2000) 
+    }
+  }, [data])
+
+  console.log( data, "data value" )
 
   return (
     <main className="">
@@ -89,7 +102,7 @@ export default function Home() {
           <div className="md:flex-1 space-y-4 md:space-y-8 xl:space-y-10">
             {/* Today Weather Details */}
             <TodayWeatherDetails 
-            
+              { ...data?.data.current_weather }
             />
 
             {/* Today Weather Highlight */}
@@ -99,6 +112,11 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <Loader 
+        loading={ Loading }
+
+      />
     </main>
   );
 }
