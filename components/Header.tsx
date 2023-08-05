@@ -1,7 +1,9 @@
 "use client";
 
-import React, { HTMLInputTypeAttribute, useState } from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import Image from "next/image";
+import { useGeolocated } from "react-geolocated";
 
 function Header({ 
   updateCity 
@@ -23,6 +25,16 @@ function Header({
     // "ibadan",
   ]);
 
+  const { coords, isGeolocationAvailable, isGeolocationEnabled } =
+    useGeolocated({
+        positionOptions: {
+            enableHighAccuracy: false,
+        },
+        userDecisionTimeout: 5000,
+    });
+
+    console.log( coords, isGeolocationAvailable, isGeolocationEnabled )
+
   const handleOpenModal = () => {
     setModalOpen(true);
   };
@@ -43,18 +55,29 @@ function Header({
 
   function getCurrentLocation() {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showPosition);
+      navigator.geolocation.getCurrentPosition(( position ) => {
+        const { latitude, longitude } = position.coords
+        console.log( latitude, longitude )
+        const url = `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${process.env.NEXT_PUBLIC_OPENCAGE_API_KEY}`
+
+        axios
+        .get(url)
+        .then((response) => {
+          const cityData = response.data.results[0];
+          if (cityData) {
+            const city = cityData.components.city || cityData.components.town || cityData.components.village;
+            updateCity( city )
+            console.log( city )
+          } else {
+            console.log('City not found')
+          }
+        })
+        .catch((error) => {
+          console.error('Error fetching city:', error.message);
+        });
+      });
     } else {
       console.log("Geolocation is not supported by this browser.");
-    }
-
-    function showPosition(position: any) {
-      console.log(
-        "Latitude: " +
-          position.coords.latitude +
-          "Longitude: " +
-          position.coords.longitude
-      );
     }
   }
 
