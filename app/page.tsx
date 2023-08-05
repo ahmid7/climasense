@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { toast } from 'react-toastify';
 
 import CurrentForecast from "@/components/CurrentForecast";
 import TodayWeatherDetails from "@/components/TodayWeatherDetails";
@@ -55,7 +56,13 @@ export default function Home() {
     queryFn: () =>
       axios
         .get(`https://climasense-1-g2114242.deta.app/weather/${city}`)
-        .then((res) => res.data),
+        .then((res) => {
+          if( res.data == null ) {
+            toast.error("Invalid city selection")
+          }
+          return res.data
+        })
+        .catch(( err ) => console.log(err, "error"))
 
   })
 

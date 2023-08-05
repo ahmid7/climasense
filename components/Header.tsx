@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import axios from "axios";
 import Image from "next/image";
+import { toast } from 'react-toastify';
 
 function Header({ updateCity, refetch }: { updateCity: (value: string) => void, refetch: any } ) {
   
@@ -35,9 +35,10 @@ function Header({ updateCity, refetch }: { updateCity: (value: string) => void, 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(( position ) => {
         updateCity('Kwara')
+        toast.success("Location found successfully.")
       });
     } else {
-      console.log("Geolocation is not supported by this browser.");
+      toast.error("Geolocation is not supported by this browser.")
     }
   }
 
@@ -94,8 +95,8 @@ function Header({ updateCity, refetch }: { updateCity: (value: string) => void, 
           <span className="text-sm hidden md:block">Current Location</span>
         </button>
 
-        <div className="space-x-5">
-          <button className="md:hidden" onClick={handleOpenModal}>
+        <div className="md:hidden space-x-5">
+          <button className="" onClick={handleOpenModal}>
             <Image
               alt="search-icon"
               priority={true}
@@ -107,7 +108,7 @@ function Header({ updateCity, refetch }: { updateCity: (value: string) => void, 
           </button>
 
           <button
-            className="md:hidden"
+            className=""
             onClick={ getCurrentLocation }
           >
             <Image
