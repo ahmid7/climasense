@@ -83,7 +83,7 @@ function TodayWeatherDetails() {
           <p>Sunrise & Sunset</p>
 
           <div className="flex lg:flex-col justify-between items-center lg:py-8 xl:py-10 h-full">
-            <div className="flex ">
+            <div className="flex gap-x-2 ">
               <Image
                 src="/svg/sunrise.svg"
                 alt="sunrise-image"
@@ -99,7 +99,7 @@ function TodayWeatherDetails() {
               </div>
             </div>
 
-            <div className="flex">
+            <div className="flex gap-x-2">
               <Image
                 src="/svg/sunset.svg"
                 alt="sunset-image"
