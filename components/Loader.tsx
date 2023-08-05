@@ -39,7 +39,7 @@ function Loader({ loading}: { loading: boolean }) {
           <span className="drop"></span>
         </div>
 
-        <div className='ml-4'>
+        <div className='ml-4 xl:ml-2 text-xl xl:text-2xl'>
           ClimaSense
         </div>
       </div>

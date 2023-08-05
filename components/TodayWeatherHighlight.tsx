@@ -20,7 +20,7 @@ interface WeatherForecastComponentProps {
 }
 
 function TodayWeatherHighlight({ weather_forecast }: WeatherForecastComponentProps) {
-  const weather_forecast_reduced = weather_forecast?.splice(32)
+  const weather_forecast_reduced = weather_forecast?.slice(-8)
 
   return (
     <section>
