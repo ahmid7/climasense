@@ -39,25 +39,7 @@ function Header({ updateCity, refetch }: { updateCity: (value: string) => void, 
   function getCurrentLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(( position ) => {
-        const { latitude, longitude } = position.coords
-        console.log( latitude, longitude )
-        const url = `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${process.env.NEXT_PUBLIC_OPENCAGE_API_KEY}`
-
-        axios
-        .get(url)
-        .then((response) => {
-          const cityData = response.data.results[0];
-          if (cityData) {
-            const city = cityData.components.city || cityData.components.town || cityData.components.village;
-            updateCity( city )
-            console.log( city )
-          } else {
-            console.log('City not found')
-          }
-        })
-        .catch((error) => {
-          console.error('Error fetching city:', error.message);
-        });
+        updateCity('Kwara')
       });
     } else {
       console.log("Geolocation is not supported by this browser.");

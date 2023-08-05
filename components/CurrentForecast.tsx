@@ -14,6 +14,26 @@ function CurrentForecast({
   description, 
   city,
 }: CurrentForecastProps) {
+  const [currentDate, setCurrentDate] = React.useState(new Date());
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentDate(new Date());
+    }, 1000); // Update the date every second
+
+    return () => {
+      clearInterval(interval); // Clean up the interval when the component is unmounted
+    };
+  }, []);
+
+  const formatDate = (date:any) => {
+    return new Intl.DateTimeFormat('en-US', {
+      weekday: 'long', // "Wednesday"
+      day: 'numeric', // "27"
+      month: 'long', // "July"
+    }).format(date);
+  };
+
   return (
     <section className="">
       <div className="rounded-[20px] py-3 xl:py-4 card elevated-card">
@@ -42,25 +62,24 @@ function CurrentForecast({
           <div>
             <Image
               alt="calender-icon"
-              src="/images/calendar.png"
+              src="/svg/calendar.svg"
               priority={true}
               quality={100}
               width={24}
               height={24}
             />
 
-            <span>Wednesday 26th, July</span>
+            <span>{formatDate(currentDate)}</span>
           </div>
 
           <div>
             <Image
               alt="locationpin-icon"
-              src="/images/locationpin.png"
+              src="/svg/pin.svg"
               priority={true}
               quality={100}
-              width={32}
-              height={32}
-              className="object-contain"
+              width={24}
+              height={24}
             />
 
             <span>{ city }</span>
