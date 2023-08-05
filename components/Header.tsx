@@ -86,7 +86,7 @@ function Header({ updateCity, refetch }: { updateCity: (value: string) => void, 
             alt="location-icon"
             priority={true}
             quality={100}
-            src="/svg/location.svg"
+            src="/svg/find-user.svg"
             width={20}
             height={20}
           />
@@ -94,16 +94,32 @@ function Header({ updateCity, refetch }: { updateCity: (value: string) => void, 
           <span className="text-sm hidden md:block">Current Location</span>
         </button>
 
-        <button className="md:hidden" onClick={handleOpenModal}>
-          <Image
-            alt="search-icon"
-            priority={true}
-            quality={100}
-            src="/svg/search-icon.svg"
-            width={20}
-            height={20}
-          />
-        </button>
+        <div className="space-x-5">
+          <button className="md:hidden" onClick={handleOpenModal}>
+            <Image
+              alt="search-icon"
+              priority={true}
+              quality={100}
+              src="/svg/search-icon.svg"
+              width={20}
+              height={20}
+            />
+          </button>
+
+          <button
+            className="md:hidden"
+            onClick={ getCurrentLocation }
+          >
+            <Image
+              alt="location-icon"
+              priority={true}
+              quality={100}
+              src="/svg/find-user.svg"
+              width={20}
+              height={20}
+            />
+          </button>
+        </div>
       </header>
 
       {/* modal */}

@@ -79,7 +79,6 @@ function TodayWeatherDetails({ humidity, pressure, wind_speed, feels_like, sunri
               const dataObject = { name, value };
               arr.push(dataObject)
             });
-
             setairQualityDetails(arr)
           }
           )
