@@ -36,8 +36,27 @@ const main: WeatherData = {
   "visibility": 10,
 }
 
+interface WeatherForecastData {
+  datetime_f: number;
+  temperature_f: number;
+  description_f: string;
+  humidity_f: number;
+  wind_speed_f: number;
+  date_f: string;
+  pressure_f: number;
+  feels_like_f: number;
+  icon_f: string;
+  main_f: string;
+}
+
+// Props interface for the WeatherForecastComponent
+interface WeatherForecastComponentProps {
+  weather_forecast: WeatherForecastData[];
+}
+
 /* eslint-disable react/no-unescaped-entities */
 function TodayWeatherDetails() {
+
   const weatherDetailsKey = Object.keys(main) as Array<keyof WeatherData>;
 
   return (

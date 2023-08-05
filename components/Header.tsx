@@ -3,37 +3,16 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Image from "next/image";
-import { useGeolocated } from "react-geolocated";
 
-function Header({ 
-  updateCity 
-}: { 
-  updateCity: (value: string) => void }
-) {
+function Header({ updateCity, refetch }: { updateCity: (value: string) => void, refetch: any } ) {
   
   const [modalOpen, setModalOpen] = useState(false);
 
   const [ inputSearchCity, setInputSearchCity ] = useState('')
 
-  const [searchList, setSearchList] = useState([
-    // "lagos",
-    // "abuja",
-    // "kano",
-    // "jos",
-    // "kaduna",
-    // "ilorin",
-    // "ibadan",
+  const [searchList, setSearchList] = useState <String[]>([
+    
   ]);
-
-  const { coords, isGeolocationAvailable, isGeolocationEnabled } =
-    useGeolocated({
-        positionOptions: {
-            enableHighAccuracy: false,
-        },
-        userDecisionTimeout: 5000,
-    });
-
-    console.log( coords, isGeolocationAvailable, isGeolocationEnabled )
 
   const handleOpenModal = () => {
     setModalOpen(true);
@@ -50,9 +29,13 @@ function Header({
   const handleInputEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if( event.key === "Enter" ) {
       updateCity( inputSearchCity )
+      setSearchList([...searchList, inputSearchCity])
     }
   }
 
+
+
+  // current location
   function getCurrentLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(( position ) => {
@@ -147,6 +130,7 @@ function Header({
         </button>
       </header>
 
+      {/* modal */}
       <div
         className={`modalBackdrop ${modalOpen ? "open" : ""}`}
         onClick={handleCloseModal}
@@ -165,8 +149,11 @@ function Header({
 
               <input
                 type="text"
+                value={ inputSearchCity }
                 placeholder="Enter City"
                 className="bg-inherit flex-1 outline-none border-none py-1 xl:py-2 text-opacity-80"
+                onChange={ updateSearchCity }
+                onKeyDown={ handleInputEnter }
               />
             </div>
           </div>
@@ -174,21 +161,21 @@ function Header({
           <div>
             {searchList.length < 1 && (
               <div className="flex justify-center items-center h-40 px-4  border-opacity-50 border-white">
-                <p className="text-gray-400">No result found</p>
+                <p className="text-gray-400 ">No result found</p>
               </div>
             )}
 
             {searchList.length > 0 && (
               <div className=" pb-10">
-                <p className="border-b border-opacity-50 border-white py-2 text-lg px-4">
-                  Results
+                <p className="border-b border-opacity-50 border-white py-4  text-lg px-4">
+                  Recent Search
                 </p>
-                <ul>
+                <ul className="max-h-72 overflow-y-auto">
                   {searchList.map((list, index) => {
                     return (
                       <li
                         key={index}
-                        className="border-b border-opacity-50 border-white py-1 px-4"
+                        className="border-b border-opacity-50 border-white py-3 px-4"
                       >
                         <p>{list}</p>
                       </li>
