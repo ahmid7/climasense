@@ -16,10 +16,10 @@ const fontLato = Lato({
 
 const queryClient = new QueryClient()
 
-export const metadata: Metadata = {
-  title: 'ClimaSense',
-  description: 'Weather App',
-}
+// export const metadata: Metadata = {
+//   title: 'ClimaSense',
+//   description: 'Weather App',
+// }
 
 export default function RootLayout({
   children,
