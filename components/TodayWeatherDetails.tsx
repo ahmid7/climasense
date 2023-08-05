@@ -74,10 +74,13 @@ function TodayWeatherDetails({ humidity, pressure, wind_speed, feels_like, sunri
         fetch(`https://climasense-1-g2114242.deta.app/air_quality/lat=${data[0].lat}&lon=${data[0].lon}`)
           .then(response => response.json())
           .then(( data ) => {
+            let arr = []
             Object.entries(data).map(([name, value]) => {
               const dataObject = { name, value };
-              setairQualityDetails((airQualityDetails) => [...airQualityDetails, dataObject]);
+              arr.push(dataObject)
             });
+
+            setairQualityDetails(arr)
           }
           )
       })
@@ -85,6 +88,8 @@ function TodayWeatherDetails({ humidity, pressure, wind_speed, feels_like, sunri
         console.error('Error fetching data', error);
       });
   }, [city])
+
+  console.log(airQualityDetails)
 
 
 
@@ -96,7 +101,26 @@ function TodayWeatherDetails({ humidity, pressure, wind_speed, feels_like, sunri
         <div className="elevated-card p-4 rounded-[20px]">
           <div className="flex items-center justify-between">
             <span>Air Quality Index</span>
-            <span className="bg-[#03B454] px-5 py-1 rounded-full">Good</span>
+            <span 
+              className={`
+                 px-5 py-1 rounded-full
+                ${ 
+                  airQualityDetails[4]?.value == 1 ? 'bg-[#03B454]' :
+                  airQualityDetails[4]?.value == 2 ? 'bg-[#40BF00]' :
+                  airQualityDetails[4]?.value == 3 ? 'bg-[#808000]' :
+                  airQualityDetails[4]?.value == 4 ? 'bg-[#BF4000]' :
+                  airQualityDetails[4]?.value == 5 ? 'bg-[#FF0000]' : ''
+                 }
+              `}
+            >
+              { 
+                airQualityDetails[4]?.value == 1 ? "Good" :
+                airQualityDetails[4]?.value == 2 ? "Fair" :
+                airQualityDetails[4]?.value == 3 ? "Moderate" :
+                airQualityDetails[4]?.value == 4 ? "Poor" :
+                airQualityDetails[4]?.value == 5 ? "Very-Poor" : ''
+              }
+            </span>
           </div>
 
           <div className="grid place-content-center py-6">
@@ -130,7 +154,7 @@ function TodayWeatherDetails({ humidity, pressure, wind_speed, feels_like, sunri
         <div className="elevated-card rounded-[20px] p-4">
           <p>Sunrise & Sunset</p>
 
-          <div className="flex lg:flex-col justify-between items-center lg:py-8 xl:py-10 h-full">
+          <div className="flex lg:flex-col justify-between items-center py-4 lg:py-8 xl:py-10 h-full">
             <div className="flex gap-x-2 ">
               <Image
                 src="/svg/sunrise.svg"
