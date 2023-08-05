@@ -1,24 +1,8 @@
+// @ts-nocheck
 import Image from "next/image";
 import React from "react";
 
-const airQualityDetails = [
-  {
-    name: "PM25",
-    value: "3.90",
-  },
-  {
-    name: "SO2",
-    value: "7.75",
-  },
-  {
-    name: "NO2",
-    value: "33.6",
-  },
-  {
-    name: "O3",
-    value: "38.6",
-  },
-];
+
 
 type TodayWeatherDetailsProps = {
   humidity: number;
@@ -27,12 +11,29 @@ type TodayWeatherDetailsProps = {
   feels_like: number;
   sunrise: string;
   sunset: string;
+  city: string;
+}
+
+interface Data {
+  pm2_5: number;
+  no2: number;
+  o3: number;
+  so2: number;
+  status: number;
+}
+
+interface DataItem {
+  name: keyof Data;
+  value: number;
 }
 
 
-
 /* eslint-disable react/no-unescaped-entities */
-function TodayWeatherDetails({ humidity, pressure, wind_speed, feels_like, sunrise, sunset  }:  TodayWeatherDetailsProps ) {
+function TodayWeatherDetails({ humidity, pressure, wind_speed, feels_like, sunrise, sunset, city  }:  TodayWeatherDetailsProps ) {
+
+  const [airQualityDetails, setairQualityDetails] = React.useState<DataItem[]>([
+
+  ])
 
   const weatherDetails = [ 
     { 
@@ -65,6 +66,27 @@ function TodayWeatherDetails({ humidity, pressure, wind_speed, feels_like, sunri
   // Get the human-readable time in local time zone
   const sunriseTime = sunriseDate.toLocaleTimeString();
   const sunsetTime = sunsetDate.toLocaleTimeString();
+  
+  React.useEffect(() => {
+    fetch(`https://climasense-1-g2114242.deta.app/coord/${city}`)
+      .then(response => response.json())
+      .then(( data ) => {
+        fetch(`https://climasense-1-g2114242.deta.app/air_quality/lat=${data[0].lat}&lon=${data[0].lon}`)
+          .then(response => response.json())
+          .then(( data ) => {
+            Object.entries(data).map(([name, value]) => {
+              const dataObject = { name, value };
+              setairQualityDetails((airQualityDetails) => [...airQualityDetails, dataObject]);
+            });
+          }
+          )
+      })
+      .catch((error) => {
+        console.error('Error fetching data', error);
+      });
+  }, [city])
+
+
 
   return (
     <section className="card elevated-card p-4 rounded-[20px]">
@@ -89,16 +111,16 @@ function TodayWeatherDetails({ humidity, pressure, wind_speed, feels_like, sunri
           </div>
 
           <div className="grid grid-cols-2 items-center gap-y-6 xl:gap-y-[27px]">
-            {
-            airQualityDetails.map((detail, index) => (
+            { airQualityDetails.length > 0 && airQualityDetails?.map((detail:any, index:number) => (
               <div
-                key={index}
+                key={index + detail.name}
                 className={`
-                  ${index % 2 === 0 ? "text-left" : "text-right"} 
+                  ${index % 2 === 0 ? "text-left" : "text-right"}
+                  ${ detail.name == 'status' ? 'hidden' : '' } 
                   [&_span]:block 
                 `}
               >
-                <span className="text-base ">{detail.name}</span>
+                <span className="text-base">{detail.name}</span>
                 <span className="text-base xl:text-xl font-medium">{detail.value}</span>
               </div>
             ))}
@@ -171,7 +193,7 @@ function TodayWeatherDetails({ humidity, pressure, wind_speed, feels_like, sunri
                       >
                         { 
                           detail.name == 'humidity' ? '%' : 
-                          detail.name == 'pressure' ? 'hPa' : 
+                          detail.name == 'pressure' ? 'HPa' : 
                           detail.name == 'wind_speed' ? 'm/s' : '°C' 
                         }
                       </span>

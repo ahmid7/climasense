@@ -10,10 +10,6 @@ function Header({ updateCity, refetch }: { updateCity: (value: string) => void, 
 
   const [ inputSearchCity, setInputSearchCity ] = useState('')
 
-  const [searchList, setSearchList] = useState <String[]>([
-    
-  ]);
-
   const handleOpenModal = () => {
     setModalOpen(true);
   };
@@ -28,12 +24,11 @@ function Header({ updateCity, refetch }: { updateCity: (value: string) => void, 
 
   const handleInputEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if( event.key === "Enter" ) {
-      updateCity( inputSearchCity )
-      setSearchList([...searchList, inputSearchCity])
+      if( inputSearchCity.length > 0 ) {
+        updateCity( inputSearchCity )
+      }
     }
   }
-
-
 
   // current location
   function getCurrentLocation() {
@@ -46,7 +41,6 @@ function Header({ updateCity, refetch }: { updateCity: (value: string) => void, 
     }
   }
 
-  
   return (
     <section>
       <header className="flex items-center justify-between py-3 md:py-3.5 elevate-card">
@@ -138,34 +132,6 @@ function Header({ updateCity, refetch }: { updateCity: (value: string) => void, 
                 onKeyDown={ handleInputEnter }
               />
             </div>
-          </div>
-
-          <div>
-            {searchList.length < 1 && (
-              <div className="flex justify-center items-center h-40 px-4  border-opacity-50 border-white">
-                <p className="text-gray-400 ">No result found</p>
-              </div>
-            )}
-
-            {searchList.length > 0 && (
-              <div className=" pb-10">
-                <p className="border-b border-opacity-50 border-white py-4  text-lg px-4">
-                  Recent Search
-                </p>
-                <ul className="max-h-72 overflow-y-auto">
-                  {searchList.map((list, index) => {
-                    return (
-                      <li
-                        key={index}
-                        className="border-b border-opacity-50 border-white py-3 px-4"
-                      >
-                        <p>{list}</p>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            )}
           </div>
         </div>
       </div>

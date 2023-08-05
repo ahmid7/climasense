@@ -54,15 +54,14 @@ export default function Home() {
     queryKey: ['repoData'],
     queryFn: () =>
       axios
-        .get(`/api/current_weather?city=${city}`)
+        .get(`https://climasense-1-g2114242.deta.app/weather/${city}`)
         .then((res) => res.data),
+
   })
 
   function updateCity(value: string) {
     setCity(value)
   }
-
-  console.log( Loading )
 
   React.useEffect(() => {
     refetch()
@@ -76,7 +75,6 @@ export default function Home() {
     }
   }, [data])
 
-  console.log( data, "data value" )
 
   return (
     <main className="">
@@ -90,7 +88,7 @@ export default function Home() {
           <div className="md:min-w-[150px] lg:min-w-[280px] xl:min-w-[352px] space-y-4 md:space-y-8 xl:space-y-[39px]">
             {/* current weather */}
             <CurrentForecast 
-              { ...data?.data.current_weather }
+              { ...data?.current_weather }
             />
 
             {/* Week Forecast */}
@@ -102,12 +100,13 @@ export default function Home() {
           <div className="md:flex-1 space-y-4 md:space-y-8 xl:space-y-10">
             {/* Today Weather Details */}
             <TodayWeatherDetails 
-              { ...data?.data.current_weather }
+              { ...data?.current_weather }
+              city= { city }
             />
 
             {/* Today Weather Highlight */}
             <TodayWeatherHighlight 
-              weather_forecast= { ...data?.data.weather_forecast }
+              weather_forecast= { ...data?.weather_forecast }
             />
           </div>
         </div>
