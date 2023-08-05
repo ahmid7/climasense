@@ -59,6 +59,8 @@ export default function Home() {
     setCity(value)
   }
 
+  
+
   return (
     <main className="">
       <section className="px-4 md:px-8 xl:px-10 space-y-4 md:space-y-8 xl:space-y-9 pt-2 xl:pt-4">

@@ -8,6 +8,7 @@ function Header({
 }: { 
   updateCity: (value: string) => void }
 ) {
+  
   const [modalOpen, setModalOpen] = useState(false);
 
   const [ inputSearchCity, setInputSearchCity ] = useState('')
@@ -34,6 +35,30 @@ function Header({
     setInputSearchCity(e.target.value)
   }
 
+  const handleInputEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if( event.key === "Enter" ) {
+      updateCity( inputSearchCity )
+    }
+  }
+
+  function getCurrentLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+
+    function showPosition(position: any) {
+      console.log(
+        "Latitude: " +
+          position.coords.latitude +
+          "Longitude: " +
+          position.coords.longitude
+      );
+    }
+  }
+
+  
   return (
     <section>
       <header className="flex items-center justify-between py-3 md:py-3.5 elevate-card">
@@ -51,7 +76,7 @@ function Header({
           <span className="h-fit">ClimaSense</span>
         </div>
 
-        <div className="cursor-pointer hidden md:flex md:min-w-[250px] lg:min-w-[300px] xl:min-w-[428px] items-center gap-x-4 bg-[#2b2b2e] px-1.5 md:px-4 xl:px-6 py-1.5 md:py-1 rounded-full">
+        <div className="hidden md:flex md:min-w-[250px] lg:min-w-[300px] xl:min-w-[428px] items-center gap-x-4 bg-[#2b2b2e] px-1.5 md:px-4 xl:px-6 py-1.5 md:py-1 rounded-full">
           <Image
             alt="search-icon"
             priority={true}
@@ -67,10 +92,14 @@ function Header({
             placeholder="Enter City"
             className="bg-inherit flex-1 text-white outline-none py-1 xl:py-2 text-opacity-80 text-sm hidden md:block"
             onChange={ updateSearchCity }
+            onKeyDown={ handleInputEnter }
           />
         </div>
 
-        <button className="hidden md:flex items-center space-x-3 rounded-full bg-[#575796] w-fit md:px-3 md:py-2  xl:py-2.5">
+        <button 
+          className="hidden md:flex items-center space-x-3 rounded-full bg-[#03B454] w-fit md:px-3 md:py-2  xl:py-2.5 hover:bg-opacity-80 focus:bg-opacity-80 transition-all"
+          onClick={ getCurrentLocation }
+        >
           <Image
             alt="location-icon"
             priority={true}
@@ -99,9 +128,9 @@ function Header({
         className={`modalBackdrop ${modalOpen ? "open" : ""}`}
         onClick={handleCloseModal}
       >
-        <div className="modalContent glass-container2 elevated-card" onClick={(e) => e.stopPropagation()}>
-          <div className="border-b border-blue-900 flex justify-between items-center">
-            <div className="flex gap-x-2 py-2">
+        <div className="modalContent glass-container2 z-10" onClick={(e) => e.stopPropagation()}>
+          <div className="border-b border-green-900 flex justify-between items-center">
+            <div className="flex gap-x-2 py-2 px-4">
               <Image
                 alt="search-icon"
                 priority={true}
