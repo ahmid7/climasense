@@ -88,9 +88,6 @@ function TodayWeatherDetails({ humidity, pressure, wind_speed, feels_like, sunri
       });
   }, [city])
 
-  console.log(airQualityDetails)
-
-
 
   return (
     <section className="card elevated-card p-4 rounded-[20px]">
