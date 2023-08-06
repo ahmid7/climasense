@@ -12,39 +12,6 @@ import WeeklyForecast from "@/components/WeeklyForecast";
 import Header from "@/components/Header";
 import Loader from "@/components/Loader";
 
-const weeklyForecastData = [
-  {
-    day: "monday",
-    temp: 5,
-    icon: "cloudy",
-    date: "27 July",
-  },
-  {
-    day: "monday",
-    temp: 5,
-    icon: "cloudy",
-    date: "27 July",
-  },
-  {
-    day: "monday",
-    temp: 5,
-    icon: "cloudy",
-    date: "27 July",
-  },
-  {
-    day: "monday",
-    temp: 5,
-    icon: "cloudy",
-    date: "27 July",
-  },
-  {
-    day: "monday",
-    temp: 5,
-    icon: "cloudy",
-    date: "27 July",
-  },
-];
-
 export default function Home() {
 
   const [ Loading, setLoading ] = useState(true)
@@ -52,7 +19,7 @@ export default function Home() {
   const [ city, setCity ] = useState('kwara')
 
   const { isLoading, error, data, isFetching, refetch } = useQuery({
-    queryKey: ['repoData'],
+    queryKey: ['weatherData'],
     queryFn: () =>
       axios
         .get(`https://climasense-1-g2114242.deta.app/weather/${city}`)
@@ -63,8 +30,10 @@ export default function Home() {
           return res.data
         })
         .catch(( err ) => console.log(err, "error"))
-
   })
+  
+
+
 
   function updateCity(value: string) {
     setCity(value)
@@ -100,7 +69,7 @@ export default function Home() {
 
             {/* Week Forecast */}
             <WeeklyForecast 
-              forecast={ weeklyForecastData } 
+              city= { city }
             />
           </div>
 
