@@ -26,6 +26,7 @@ function Header({ updateCity, refetch }: { updateCity: (value: string) => void, 
     if( event.key === "Enter" ) {
       if( inputSearchCity.length > 0 ) {
         updateCity( inputSearchCity )
+        handleCloseModal()
       }
     }
   }
