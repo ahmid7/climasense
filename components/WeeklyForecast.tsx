@@ -15,7 +15,7 @@ function WeeklyForecast({ city }: forecast ) {
   const [ data, setData ] = React.useState([])
 
   React.useEffect(() => {
-    fetch(`http://dataservice.accuweather.com/locations/v1/search?q=${city}&apikey=${process.env.NEXT_PUBLIC_ACCUWEATHER_API_KEY}`)
+    fetch(`https://dataservice.accuweather.com/locations/v1/search?q=${city}&apikey=${process.env.NEXT_PUBLIC_ACCUWEATHER_API_KEY}`)
       .then(response => response.json())
       .then(( data ) => {
         fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${data[0].Key}?metric=true&apikey=${process.env.NEXT_PUBLIC_ACCUWEATHER_API_KEY}`)
