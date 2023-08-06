@@ -18,6 +18,7 @@ function WeeklyForecast({ city }: forecast ) {
     fetch(`http://dataservice.accuweather.com/locations/v1/search?q=${city}&apikey=${process.env.NEXT_PUBLIC_ACCUWEATHER_API_KEY}`)
       .then(response => response.json())
       .then(( data ) => {
+        console.log(data)
         fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${data[0].Key}?metric=true&apikey=${process.env.NEXT_PUBLIC_ACCUWEATHER_API_KEY}`)
           .then(response => response.json())
           .then(( data ) => {
