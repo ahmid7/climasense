@@ -29,11 +29,9 @@ export default function Home() {
           }
           return res.data
         })
-        .catch(( err ) => console.log(err, "error"))
+        .catch(( err ) => toast.error(`error: ${err}`))
   })
   
-
-
 
   function updateCity(value: string) {
     setCity(value)
@@ -90,7 +88,6 @@ export default function Home() {
 
       <Loader 
         loading={ Loading }
-
       />
     </main>
   );
