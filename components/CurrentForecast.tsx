@@ -7,7 +7,6 @@ type CurrentForecastProps = {
   temperature: number;
   icon: string;
   description: string;
-  isLoading: boolean;
   city: string;
 }
 
@@ -15,7 +14,6 @@ function CurrentForecast({
   temperature, 
   icon, 
   description, 
-  isLoading,
   city
 }: CurrentForecastProps) {
   const [currentDate, setCurrentDate] = React.useState(new Date());
@@ -37,11 +35,8 @@ function CurrentForecast({
       month: 'long', // "July"
     }).format(date);
   };
-
-  console.log(isLoading)
-
   return (
-    <section className="relative">
+    <section className="relative ">
       <div className="rounded-[20px] py-3 xl:py-4 card elevated-card">
         <div className="px-4">
           <div className="flex gap-x-[56px]">
@@ -92,12 +87,6 @@ function CurrentForecast({
           </div>
         </div>
       </div>
-
-      {
-        !isLoading && (
-          <ComponentLoader />
-        )
-      }
     </section>
   );
 }

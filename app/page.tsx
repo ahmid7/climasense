@@ -11,6 +11,7 @@ import TodayWeatherHighlight from "@/components/TodayWeatherHighlight";
 import WeeklyForecast from "@/components/WeeklyForecast";
 import Header from "@/components/Header";
 import Loader from "@/components/Loader";
+import ComponentLoader from "@/components/ComponentLoader";
 
 export default function Home() {
 
@@ -61,28 +62,53 @@ export default function Home() {
         <div className="flex flex-col md:flex-row md:space-x-6 lg:space-x-8 xl:space-x-10 space-y-3 md:space-y-0">
           <div className="md:min-w-[150px] lg:min-w-[280px] xl:min-w-[352px] space-y-4 md:space-y-8 xl:space-y-[39px]">
             {/* current weather */}
-            <CurrentForecast 
-              { ...data?.current_weather }
-              isLoading={ isLoading }
-            />
+            <div className="relative">
+              <CurrentForecast 
+                { ...data?.current_weather }
+              />
+
+              {
+                ( isLoading || isFetching )  && ( <ComponentLoader/> )
+              }
+            </div>
 
             {/* Week Forecast */}
-            <WeeklyForecast 
-              city= { city }
-            />
+            <div className="relative">
+
+              <WeeklyForecast 
+                city= { city }
+              />
+
+              {
+                ( isLoading || isFetching )  && ( <ComponentLoader/> )
+              }
+            </div>
           </div>
 
           <div className="md:flex-1 space-y-4 md:space-y-8 xl:space-y-10">
             {/* Today Weather Details */}
-            <TodayWeatherDetails 
-              { ...data?.current_weather }
-              city= { city }
-            />
+            <div className="relative">
+              <TodayWeatherDetails 
+                { ...data?.current_weather }
+                city= { city }
+              />
 
-            {/* Today Weather Highlight */}
-            <TodayWeatherHighlight 
-              weather_forecast= { ...data?.weather_forecast }
-            />
+              {
+                ( isLoading || isFetching )  && ( <ComponentLoader/> )
+              }
+            </div>
+
+            <div className="relative">
+              {/* Today Weather Highlight */}
+              <TodayWeatherHighlight 
+                weather_forecast= { ...data?.weather_forecast }
+              />
+
+              {
+                ( isLoading || isFetching )  && ( <ComponentLoader/> )
+              }
+            </div>
+
           </div>
         </div>
       </section>
