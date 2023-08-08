@@ -63,6 +63,7 @@ export default function Home() {
             {/* current weather */}
             <CurrentForecast 
               { ...data?.current_weather }
+              isLoading={ isLoading }
             />
 
             {/* Week Forecast */}

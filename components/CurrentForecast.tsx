@@ -1,10 +1,13 @@
 import React from "react";
 import Image from "next/image";
 
+import ComponentLoader from "./ComponentLoader";
+
 type CurrentForecastProps = {
   temperature: number;
   icon: string;
   description: string;
+  isLoading: boolean;
   city: string;
 }
 
@@ -12,7 +15,8 @@ function CurrentForecast({
   temperature, 
   icon, 
   description, 
-  city,
+  isLoading,
+  city
 }: CurrentForecastProps) {
   const [currentDate, setCurrentDate] = React.useState(new Date());
 
@@ -33,6 +37,8 @@ function CurrentForecast({
       month: 'long', // "July"
     }).format(date);
   };
+
+  console.log(isLoading)
 
   return (
     <section className="">
@@ -86,6 +92,10 @@ function CurrentForecast({
           </div>
         </div>
       </div>
+
+      {
+        
+      }
     </section>
   );
 }
