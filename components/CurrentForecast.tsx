@@ -41,7 +41,7 @@ function CurrentForecast({
   console.log(isLoading)
 
   return (
-    <section className="">
+    <section className="relative">
       <div className="rounded-[20px] py-3 xl:py-4 card elevated-card">
         <div className="px-4">
           <div className="flex gap-x-[56px]">
@@ -94,7 +94,9 @@ function CurrentForecast({
       </div>
 
       {
-        
+        !isLoading && (
+          <ComponentLoader />
+        )
       }
     </section>
   );
