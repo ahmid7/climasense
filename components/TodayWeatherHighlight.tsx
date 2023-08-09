@@ -43,7 +43,7 @@ function TodayWeatherHighlight({ weather_forecast }: WeatherForecastComponentPro
           return (
             <div
               key={index}
-              className="flex flex-col items-center justify-center gap-y-[20px] rounded-[10px] pt-3.5 card elevated-card"
+              className="flex flex-col items-center justify-center gap-y-[20px] rounded-[10px] py-3.5 card elevated-card"
             >
               <span>{formattedTime}</span>
               <Image
@@ -54,7 +54,7 @@ function TodayWeatherHighlight({ weather_forecast }: WeatherForecastComponentPro
                 width={38}
                 height={38}
               />
-              <span className="text-xl xl:text-2xl leading-normal ">{Math.round(data.temperature_f - 273.15)}&deg;<span>C</span></span>
+              <span className="text-lg xl:text-xl leading-normal ">{Math.round(data.temperature_f - 273.15)}&deg;<span>C</span></span>
             </div>
           );
         })}
