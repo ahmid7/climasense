@@ -25,11 +25,11 @@ function WeeklyForecast({ city }: forecast ) {
           }
         )
         .catch(( error ) => {
-          toast.error(`Error fetching data ${ error }`)
+          toast.error(`Unexpected Error Occurred while Fetching Weather Data`)
         })
       })
       .catch((error) => {
-        toast.error(`Error fetching data ${ error }`)
+        toast.error(`Unexpected Error Occurred while Fetching Weather Data`)
       });
   }, [city])
 

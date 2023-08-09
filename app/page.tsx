@@ -30,7 +30,7 @@ export default function Home() {
           }
           return res.data
         })
-        .catch(( err ) => toast.error(`error: ${err}`))
+        .catch(( err ) => toast.error(`Unexpected Error Occurred while Fetching Weather Data`))
   })
   
 
