@@ -17,7 +17,7 @@ export default function Home() {
 
   const [ Loading, setLoading ] = useState(true)
 
-  const [ city, setCity ] = useState('kwara')
+  const [ city, setCity ] = useState('Kwara')
 
   const { isLoading, error, data, isFetching, refetch } = useQuery({
     queryKey: ['weatherData'],
